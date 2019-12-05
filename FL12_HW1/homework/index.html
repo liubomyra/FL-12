@@ -17,12 +17,12 @@
               <hr />
               <nav>
                 <a href="#"><strong>Home</strong></a>
-                <a href="#p2"><strong>Headings</strong></a>
-                <a href="#p3"><strong>Text formats</strong></a>
-                <a href="#p4"><strong>Types of lists</strong></a>
-                <a href="#p5"><strong>Table</strong></a>
-                <a href="#p6"><strong>Blockquotes</strong></a>
-                <a href="#p7"><strong>Registration</strong></a>
+                <a href="#headings"><strong>Headings</strong></a>
+                <a href="#text-formats"><strong>Text formats</strong></a>
+                <a href="#types-of-lists"><strong>Types of lists</strong></a>
+                <a href="#table"><strong>Table</strong></a>
+                <a href="#blockquotes"><strong>Blockquotes</strong></a>
+                <a href="#registration"><strong>Registration</strong></a>
               </nav>
             </header>
 
@@ -58,31 +58,34 @@
 
             <hr />
 
-            <p id="p2">
-              h1 defines the most important heading. h6 defines the least
-              important heading. Font-size for h1 is the same as font-size for
-              h2, because we have to use only one h1 on the page, and it is
-              commonly used inside header
-            </p>
+            <section id="headings">
+              <p>
+                h1 defines the most important heading. h6 defines the least
+                important heading. Font-size for h1 is the same as font-size for
+                h2, because we have to use only one h1 on the page, and it is
+                commonly used inside header
+              </p>
 
-            <h2>Heading 2</h2>
-            <h3>Heading 3</h3>
-            <h4>Heading 4</h4>
-            <h5>Heading 5</h5>
-            <h6>Heading 6</h6>
+              <h2>Heading 2</h2>
+              <h3>Heading 3</h3>
+              <h4>Heading 4</h4>
+              <h5>Heading 5</h5>
+              <h6>Heading 6</h6>
+            </section>
 
             <hr />
 
-            <h2 id="p3">Text formats</h2>
+            <section id="text-formats">
+              <h2>Text formats</h2>
 
-            <h3>Article</h3>
-            <article>
-              <h1>Article title</h1>
-              <p>Article description</p>
-            </article>
+              <h3>Article</h3>
+              <article>
+                <h1>Article title</h1>
+                <p>Article description</p>
+              </article>
 
-            <h3>Preformatted Text</h3>
-            <pre>
+              <h3>Preformatted Text</h3>
+              <pre>
 
 Text in a <strong>pre</strong> element
 is displayed in a fixed-width
@@ -91,9 +94,9 @@ both      <strong>spaces</strong> and
 <strong>line breaks</strong>
             </pre>
 
-            <h3>This is code</h3>
-            <code>
-              <pre>
+              <h3>This is code</h3>
+              <code>
+                <pre>
 
 .flex {
   display: flex;
@@ -101,113 +104,130 @@ both      <strong>spaces</strong> and
   aliign-items: center;
 }
 
-              </pre>
-            </code>
+                </pre>
+              </code>
+            </section>
 
-            <h2 id="p4">Unordered Wish List</h2>
-            <ul>
-              <li>Iphone 11 pro max</li>
-              <li>
-                Books:
-                <ul>
-                  <li>Clean code principles javascript</li>
-                  <li>You don't know JS</li>
-                  <li>Angular Pro</li>
-                </ul>
-              </li>
-              <li>Headphones</li>
-            </ul>
+            <section id="types-of-lists">
+              <h2>Unordered Wish List</h2>
+              <ul>
+                <li>Iphone 11 pro max</li>
+                <li>
+                  Books:
+                  <ul>
+                    <li>Clean code principles javascript</li>
+                    <li>You don't know JS</li>
+                    <li>Angular Pro</li>
+                  </ul>
+                </li>
+                <li>Headphones</li>
+              </ul>
 
-            <h2>Ordered Task List</h2>
-            <ol>
-              <li>Pay the bills</li>
-              <li>Refuel the car</li>
-              <li>
-                Finish homework
-                <ol>
-                  <li>Create HTML page according to the requirements</li>
-                  <li>Upload to the GitHub repository</li>
-                </ol>
-              </li>
-              <li>Enjoy your day</li>
-            </ol>
+              <h2>Ordered Task List</h2>
+              <ol>
+                <li>Pay the bills</li>
+                <li>Refuel the car</li>
+                <li>
+                  Finish homework
+                  <ol>
+                    <li>Create HTML page according to the requirements</li>
+                    <li>Upload to the GitHub repository</li>
+                  </ol>
+                </li>
+                <li>Enjoy your day</li>
+              </ol>
 
-            <h3>Definition List</h3>
-            <dl>
-              <dt>HTML</dt>
-              <dd>HTML is the standard markup language to create Web pages.</dd>
-              <dt>CSS</dt>
-              <dd>CSS describes how HTML elements are to be displayed.</dd>
-              <dt>JavaScript</dt>
-              <dd>
-                JavaScript is a scripting languages, primarily used on the Web.
-              </dd>
-            </dl>
-            <div>
-              Select for learning
-              <select name="select">
-                <option value="JS">JS</option>
-                <option value="HTML">HTML</option>
-                <option value="CSS">CSS</option>
-              </select>
-            </div>
-
-            <hr />
-            <hr />
-
-            <h2 id="p5">Table</h2>
-            <table>
-              <caption></caption>
-              <tr>
-                <th>Skill</th>
-                <th>Training</th>
-                <th>City</th>
-              </tr>
-              <tr>
-                <td>JAVA</td>
-                <td>JAVA development training</td>
-                <td>Lviv</td>
-              </tr>
-              <tr>
-                <td>JAVASCRIPT</td>
-                <td>FRONT-END development</td>
-                <td>Kharkiv</td>
-              </tr>
-              <tr>
-                <td>IOS</td>
-                <td>IOS winter 2019</td>
-                <td>Kyiv</td>
-              </tr>
-              <tr>
-                <td>DEVOPS</td>
-                <td>DEVOPS spring 2020</td>
-                <td>Dnipro</td>
-              </tr>
-            </table>
-
-            <h2 id="p6">Blockquotes</h2>
-            <p>
-              Let’s keep it simple. Italics are good to help set it off from the
-              body text. Be sure to style the citation.
-            </p>
-            <blockquote>
-              "So if you want to go fast, if you want to get done quickly, if
-              you want your code to be easy to write, make it easy to read."<br />
-              <a href="#">Robert C. Martin (Uncle Bob)</a>
-            </blockquote>
+              <h3>Definition List</h3>
+              <dl>
+                <dt>HTML</dt>
+                <dd>
+                  HTML is the standard markup language to create Web pages.
+                </dd>
+                <dt>CSS</dt>
+                <dd>CSS describes how HTML elements are to be displayed.</dd>
+                <dt>JavaScript</dt>
+                <dd>
+                  JavaScript is a scripting languages, primarily used on the
+                  Web.
+                </dd>
+              </dl>
+              <div>
+                Select for learning
+                <select name="select">
+                  <option value="JS">JS</option>
+                  <option value="HTML">HTML</option>
+                  <option value="CSS">CSS</option>
+                </select>
+              </div>
+            </section>
 
             <hr />
+            <hr />
 
-            <form action="#" id="p7">
-              <label for="form-name">Username:</label>
-              <input type="text" id="form-name" name="name" /><br />
-              <label for="form-email">Email:</label>
-              <input type="text" name="email" id="form-email" /><br />
-              <label for="form-password">Password:</label>
-              <input type="password" id="form-password" name="password" /><br />
-              <textarea name="comment" cols="24" rows="5"></textarea><br />
-              <input type="submit" value="Submit" />
-            </form>
+            <section id="table">
+              <h2>Table</h2>
+              <table>
+                <caption></caption>
+                <tr>
+                  <th>Skill</th>
+                  <th>Training</th>
+                  <th>City</th>
+                </tr>
+                <tr>
+                  <td>JAVA</td>
+                  <td>JAVA development training</td>
+                  <td>Lviv</td>
+                </tr>
+                <tr>
+                  <td>JAVASCRIPT</td>
+                  <td>FRONT-END development</td>
+                  <td>Kharkiv</td>
+                </tr>
+                <tr>
+                  <td>IOS</td>
+                  <td>IOS winter 2019</td>
+                  <td>Kyiv</td>
+                </tr>
+                <tr>
+                  <td>DEVOPS</td>
+                  <td>DEVOPS spring 2020</td>
+                  <td>Dnipro</td>
+                </tr>
+              </table>
+            </section>
+
+            <section id="blockquotes">
+              <h2>Blockquotes</h2>
+              <p>
+                Let’s keep it simple. Italics are good to help set it off from
+                the body text. Be sure to style the citation.
+              </p>
+              <blockquote>
+                "So if you want to go fast, if you want to get done quickly, if
+                you want your code to be easy to write, make it easy to
+                read."<br />
+                <a href="#">Robert C. Martin (Uncle Bob)</a>
+              </blockquote>
+            </section>
+
+            <hr />
+
+            <section id="registration">
+              <form action="#">
+                <label for="form-name">Username:</label>
+                <input type="text" id="form-name" name="name" /><br />
+                <label for="form-email">Email:</label>
+                <input type="text" name="email" id="form-email" /><br />
+                <label for="form-password">Password:</label>
+                <input
+                  type="password"
+                  id="form-password"
+                  name="password"
+                /><br />
+                <textarea name="comment" cols="24" rows="5"></textarea><br />
+                <input type="submit" value="Submit" />
+              </form>
+            </section>
 
             <footer>
               &copy; Copyright Epam Systems
