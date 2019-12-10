@@ -59,20 +59,28 @@
 
 .tm-banner-text {
   text-shadow: 5px 4px 3px rgba(0, 0, 0, 0.6);
-  animation-duration: 6s;
-  animation-name: slidein;
-  animation-iteration-count: infinite;
+  -webkit-animation: slide-left 5s ease-out infinite both;
+  animation: slide-left 5s ease-out infinite both;
 }
 
-@keyframes slidein {
-  from {
-    margin-left: 50%;
-    width: 200%;
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(200px);
+    transform: translateX(200px);
   }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(200px);
+    transform: translateX(200px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
   }
 }
 
