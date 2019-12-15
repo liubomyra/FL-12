@@ -3,14 +3,14 @@ $fontFamilyHind: "Hind", sans-serif;
 $fontFamilyFresca: "Fresca", sans-serif;
 
 $bodyBackground: #fff !default;
-$bodyColor: #2c2f3c !default;
+$bodyColor: #000 !default;
 $bodyFontFamily: $fontFamilySource !default;
 $logoFontFamily: $fontFamilySource !default;
 $logoTextMargin: -9px 0 0 0 !default;
 $logoTextDescrFontWeight: normal !default;
 $headerLogoColor: $bodyColor !default;
 $headerBackgroundImage: url("../img/m-h-day.jpg") !default;
-$buttonBackgroundColor: #699900 !default;
+$buttonBackgroundColor: #fc0 !default;
 $buttonBackground: (
   defaultBg: $buttonBackgroundColor,
   hoverBg: darken($buttonBackgroundColor, 5%),
@@ -23,7 +23,7 @@ $headerTextFontFamily: $fontFamilySource !default;
 $headerTextFontWeight: normal !default;
 $headerTextFontSize: 17px !default;
 
-$sectionCardBackground: #21232e !default;
+$sectionCardBackground: #333 !default;
 $sectionCardColor: #fff !default;
 $sectionCardLinkColor: #fff !default;
 $sectionCardHeadingFontSize: 22px !default;
@@ -31,14 +31,14 @@ $sectionCardHeadingFontFamily: $fontFamilyHind !default;
 $sectionCardFontFamily: $fontFamilySource !default;
 $sectionCardLetterSpacing: 0 !default;
 
-$banerBackground: linear-gradient(to right, #639314, #2e5cd6) !default;
+$banerBackground: linear-gradient(to right, #be4bd3, #060665) !default;
 $sectionBannerFontSize: 16px !default;
 $sectionBannerFontFamily: $fontFamilySource !default;
 
-$highlitedTextWrapperBackground: #14a0c7 !default;
+$highlitedTextWrapperBackground: #d2d34b !default;
 
-$footerBackground: #21232e !default;
-$footerColor: #bbb !default;
+$footerBackground: #000 !default;
+$footerColor: #fff !default;
 $foterFontFamily: $fontFamilySource !default;
 $footerTextFontSize: 15px !default;
 $footerTextLineHeight: 20px !default;
