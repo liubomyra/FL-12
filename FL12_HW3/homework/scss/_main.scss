@@ -1,18 +1,48 @@
-// Write your styles here
+$fontFamilySource: "Source Sans Pro", sans-serif;
+$fontFamilyHind: "Hind", sans-serif;
+$fontFamilyFresca: "Fresca", sans-serif;
+
 $bodyBackground: #fff !default;
-$imagBackground: url("../img/m-h-day.jpg");
-$buttonBackgroundColor: #699900;
+$bodyColor: #2c2f3c !default;
+$bodyFontFamily: $fontFamilySource !default;
+$logoFontFamily: $fontFamilySource !default;
+$logoTextMargin: -9px 0 0 0 !default;
+$logoTextDescrFontWeight: normal !default;
+$headerLogoColor: $bodyColor !default;
+$headerBackgroundImage: url("../img/m-h-day.jpg") !default;
+$buttonBackgroundColor: #699900 !default;
 $buttonBackground: (
   defaultBg: $buttonBackgroundColor,
   hoverBg: darken($buttonBackgroundColor, 5%),
   activeBg: darken($buttonBackgroundColor, 10%)
-);
-$buttonColor: #fff;
-$banerBackground: linear-gradient(to right, #639314, #2e5cd6);
-$colorHighlitedTextWrapper: #14a0c7;
-$fontFamilySource: "Source Sans Pro", sans-serif;
-$fontFamilyHind: "Hind", sans-serif;
-$fontFamilyFresca: "Fresca", sans-serif;
+) !default;
+$buttonColor: #fff !default;
+$buttonFontSize: 17px !default;
+$buttonFontFamily: $fontFamilySource !default;
+$headerTextFontFamily: $fontFamilySource !default;
+$headerTextFontWeight: normal !default;
+$headerTextFontSize: 17px !default;
+
+$sectionCardBackground: #21232e !default;
+$sectionCardColor: #fff !default;
+$sectionCardLinkColor: #fff !default;
+$sectionCardHeadingFontSize: 22px !default;
+$sectionCardHeadingFontFamily: $fontFamilyHind !default;
+$sectionCardFontFamily: $fontFamilySource !default;
+$sectionCardLetterSpacing: 0 !default;
+
+$banerBackground: linear-gradient(to right, #639314, #2e5cd6) !default;
+$sectionBannerFontSize: 16px !default;
+$sectionBannerFontFamily: $fontFamilySource !default;
+
+$highlitedTextWrapperBackground: #14a0c7 !default;
+
+$footerBackground: #21232e !default;
+$footerColor: #bbb !default;
+$foterFontFamily: $fontFamilySource !default;
+$footerTextFontSize: 15px !default;
+$footerTextLineHeight: 20px !default;
+$footerCopyFontSize: 16px !default;
 
 %logo {
   display: flex;
@@ -22,17 +52,18 @@ $fontFamilyFresca: "Fresca", sans-serif;
   }
 
   p {
-    margin: -9px 0 0 0;
+    margin: $logoTextMargin;
     padding: 0;
     font-size: 25px;
     font-weight: 600;
     text-align: center;
+    font-family: $logoFontFamily;
 
     span {
       display: block;
       position: relative;
       font-size: 10px;
-      font-weight: normal;
+      font-weight: $logoTextDescrFontWeight;
     }
   }
 }
@@ -41,9 +72,9 @@ $fontFamilyFresca: "Fresca", sans-serif;
   background-color: map-get($buttonBackground, defaultBg);
   color: $buttonColor;
   padding: 11px 45px;
-  font-size: 17px;
+  font-size: $buttonFontSize;
   font-weight: bold;
-  font-family: $fontFamilyHind;
+  font-family: $buttonFontFamily;
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -82,7 +113,7 @@ $fontFamilyFresca: "Fresca", sans-serif;
   $left: 0,
   $width: 100px,
   $height: 10px,
-  $background: $colorHighlitedTextWrapper
+  $background: $highlitedTextWrapperBackground
 ) {
   position: relative;
 
@@ -104,12 +135,12 @@ $fontFamilyFresca: "Fresca", sans-serif;
 }
 
 body {
-  font-family: $fontFamilySource;
+  font-family: $bodyFontFamily;
   margin: 0 auto;
   min-width: 1560px;
   padding: 0;
   background: $bodyBackground;
-  color: #2c2f3c;
+  color: $bodyColor;
 }
 
 .header {
@@ -125,7 +156,7 @@ body {
     width: 1920px;
     margin-left: -960px;
     height: 100%;
-    background: #cccccc $imagBackground no-repeat 50%;
+    background: #ccc $headerBackgroundImage no-repeat 50%;
     background-size: cover;
     border-radius: 0% 0% 43% 0%;
   }
@@ -136,10 +167,11 @@ body {
     margin: 0 auto;
 
     .landing-logo {
+      @extend %logo;
+
       position: absolute;
       padding: 0;
-
-      @extend %logo;
+      color: $headerLogoColor;
     }
 
     .header_heading {
@@ -155,7 +187,9 @@ body {
     }
 
     .header_text {
-      font-size: 17px;
+      font-size: $headerTextFontSize;
+      font-family: $headerTextFontFamily;
+      font-weight: $headerTextFontWeight;
       line-height: 24px;
       max-width: 650px;
       margin: 0 0 36px -42px;
@@ -195,9 +229,9 @@ body {
     max-width: 1120px;
 
     .section_card {
-      background-color: #21232e;
+      background-color: $sectionCardBackground;
       border-radius: 5px;
-      color: white;
+      color: $sectionCardColor;
       margin: 0 0 25px 0;
       padding: 20px 20px;
       display: flex;
@@ -216,18 +250,22 @@ body {
         .section_card_heading {
           font-weight: bold;
           text-align: center;
-          font-size: 22px;
+          color: #fff;
+          font-size: $sectionCardHeadingFontSize;
+          font-family: $sectionCardHeadingFontFamily;
           margin: 10px 0 40px;
         }
 
         .section_card_text {
           font-size: 17px;
+          font-family: $sectionCardFontFamily;
+          letter-spacing: $sectionCardLetterSpacing;
           line-height: 24px;
           margin: 0 70px 22px;
         }
 
         .section_link {
-          @include link;
+          @include link($sectionCardLinkColor);
           margin-left: 250px;
         }
       }
@@ -256,21 +294,24 @@ body {
 
       .section_banner_text {
         color: #ccc;
-        font-size: 16px;
+        font-size: $sectionBannerFontSize;
+        font-family: $sectionBannerFontFamily;
         margin: 0;
       }
     }
 
     .section_banner_button {
       @include button;
+
       margin: 20px 0 0 200px;
     }
   }
 }
 
 .footer {
-  background-color: black;
-  color: white;
+  background-color: $footerBackground;
+  color: $footerColor;
+  font-family: $foterFontFamily;
   padding: 130px 35px 57px;
 
   .footer-wrap {
@@ -285,12 +326,13 @@ body {
 
     .footer_text {
       margin: 0 0 0 5px;
-      font-size: 15px;
+      font-size: $footerTextFontSize;
+      line-height: $footerTextLineHeight;
       width: 300px;
     }
 
     .footer-cr {
-      font-size: 18px;
+      font-size: $footerCopyFontSize;
     }
   }
 }
