@@ -1,56 +1,66 @@
 // Your code goes here
 var inputValueAgain = "Please reload the page and try again.";
 
-var input = prompt(
-  "Hello! Please input 3 numbers (a, b, c) for triangle sides length.",
-  "a, b, c"
+var inputA = prompt(
+  " Input 3 numbers (a, b, c) for triangle sides length. At first input  a = ",
+  "a"
 );
 
-if (input.length === 0) {
-  alert(" input is empty. " + inputValueAgain);
+if (inputA === "" || inputA === false || inputA === true || isNaN(inputA)) {
+  alert(" Input values should be ONLY numbers. " + inputValueAgain);
 } else {
-  var inputValues = input.split(",", 3);
-  if (inputValues.length !== 3) {
-    alert(" input has < 3 values. " + inputValueAgain);
+  var a = Number.parseFloat(inputA);
+
+  if (a <= 0) {
+    alert(
+      " A triangle must have 3 sides with a positive definite length  " +
+        inputValueAgain
+    );
   } else {
-    var a = Number(inputValues[0]);
-    var b = Number(inputValues[1]);
-    var c = Number(inputValues[2]);
-    if (
-      inputValues[0] === "" ||
-      inputValues[0] === false ||
-      inputValues[0] === true ||
-      isNaN(a) ||
-      inputValues[1] === "" ||
-      inputValues[1] === false ||
-      inputValues[1] === true ||
-      isNaN(b) ||
-      inputValues[2] === "" ||
-      inputValues[2] === false ||
-      inputValues[2] === true ||
-      isNaN(c)
-    ) {
-      alert(" Input values should be ONLY numbers " + inputValueAgain);
+    var inputB = prompt(" Input b = ", "b");
+    if (inputB === "" || inputB === false || inputB === true || isNaN(inputB)) {
+      alert(" Input values should be ONLY numbers. " + inputValueAgain);
     } else {
-      if (a <= 0 || b <= 0 || c <= 0) {
+      var b = Number.parseFloat(inputB);
+
+      if (b <= 0) {
         alert(
           " A triangle must have 3 sides with a positive definite length  " +
             inputValueAgain
         );
       } else {
-        console.log(" Your values: " + a, b, c);
-        if (a + b < c || a + c < b || b + c < a) {
-          alert(" Triangle doesn’t exist ");
-        } else if ((a === b) === c) {
-          alert(" Equilateral triangle ");
-        } else if (
-          (a === b && a !== c) ||
-          (a === c && a !== b) ||
-          (c === b && c !== a)
+        var inputC = prompt(" Input c = ", "c");
+        if (
+          inputC === "" ||
+          inputC === false ||
+          inputC === true ||
+          isNaN(inputC)
         ) {
-          alert(" Isosceles triangle ");
+          alert(" Input values should be ONLY numbers. " + inputValueAgain);
         } else {
-          alert(" Scalene triangle ");
+          var c = Number.parseFloat(inputC);
+
+          if (c <= 0) {
+            alert(
+              " A triangle must have 3 sides with a positive definite length  " +
+                inputValueAgain
+            );
+          } else {
+            console.log(" Your values: " + a, b, c);
+            if (a + b <= c || a + c <= b || b + c <= a) {
+              alert(" Triangle doesn’t exist ");
+            } else if ((a === b) === c) {
+              alert(" Equilateral triangle ");
+            } else if (
+              (a === b && a !== c) ||
+              (a === c && a !== b) ||
+              (c === b && c !== a)
+            ) {
+              alert(" Isosceles triangle ");
+            } else {
+              alert(" Scalene triangle ");
+            }
+          }
         }
       }
     }
