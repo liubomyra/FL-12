@@ -10,7 +10,7 @@ var input = prompt(
 if (input.length === 0) {
   alert("input is empty. " + inputValueAgain);
 } else {
-  var inputValues = input.split(", ", 3);
+  var inputValues = input.split(",", 3);
   if (inputValues.length !== 3) {
     alert("input has < 3 values. " + inputValueAgain);
   } else {
@@ -21,23 +21,17 @@ if (input.length === 0) {
       inputValues[0] === "" ||
       inputValues[0] === false ||
       inputValues[0] === true ||
-      isNaN(a)
-    ) {
-      alert("Invalid value for 'a'. " + inputValueAgain);
-    } else if (
+      isNaN(a) ||
       inputValues[1] === "" ||
       inputValues[1] === false ||
       inputValues[1] === true ||
-      isNaN(b)
-    ) {
-      alert("Invalid value for 'b'. " + inputValueAgain);
-    } else if (
+      isNaN(b) ||
       inputValues[2] === "" ||
       inputValues[2] === false ||
       inputValues[2] === true ||
       isNaN(c)
     ) {
-      alert("Invalid value for 'c'. " + inputValueAgain);
+      alert("Invalid input data." + inputValueAgain);
     } else {
       console.log("Your values: " + a, b, c);
 
