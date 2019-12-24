@@ -1,64 +1,53 @@
-// Your code goes here
-var inputValueAgain = "Please reload the page and try again.";
-
-var inputA = prompt(
-  " Input 3 numbers (a, b, c) for triangle sides length. At first input  a = ",
-  "a"
+const inputA = prompt(
+  'Input 3 numbers (a, b, c) for triangle sides length. At first input  a = ',
+  'a'
 );
 
-if (inputA === "" || inputA === false || inputA === true || isNaN(inputA)) {
-  alert(" Input values should be ONLY numbers. " + inputValueAgain);
+if (inputA === '' || inputA === false || inputA === true || isNaN(inputA)) {
+  alert('Input values should be ONLY numbers');
 } else {
-  var a = Number.parseFloat(inputA);
+  const a = Number.parseFloat(inputA);
 
   if (a <= 0) {
-    alert(
-      " A triangle must have 3 sides with a positive definite length  " +
-        inputValueAgain
-    );
+    alert('A triangle must have 3 sides with a positive definite length');
   } else {
-    var inputB = prompt(" Input b = ", "b");
-    if (inputB === "" || inputB === false || inputB === true || isNaN(inputB)) {
-      alert(" Input values should be ONLY numbers. " + inputValueAgain);
+    const inputB = prompt('Input b = ', 'b');
+    if (inputB === '' || inputB === false || inputB === true || isNaN(inputB)) {
+      alert('Input values should be ONLY numbers');
     } else {
-      var b = Number.parseFloat(inputB);
+      const b = Number.parseFloat(inputB);
 
       if (b <= 0) {
-        alert(
-          " A triangle must have 3 sides with a positive definite length  " +
-            inputValueAgain
-        );
+        alert('A triangle must have 3 sides with a positive definite length');
       } else {
-        var inputC = prompt(" Input c = ", "c");
+        const inputC = prompt('Input c = ', 'c');
         if (
-          inputC === "" ||
+          inputC === '' ||
           inputC === false ||
           inputC === true ||
           isNaN(inputC)
         ) {
-          alert(" Input values should be ONLY numbers. " + inputValueAgain);
+          alert('Input values should be ONLY numbers');
         } else {
-          var c = Number.parseFloat(inputC);
+          const c = Number.parseFloat(inputC);
 
           if (c <= 0) {
             alert(
-              " A triangle must have 3 sides with a positive definite length  " +
-                inputValueAgain
-            );
+              'A triangle must have 3 sides with a positive definite length');
           } else {
-            console.log(" Your values: " + a, b, c);
+            console.log('Your values:' + a, b, c);
             if (a + b <= c || a + c <= b || b + c <= a) {
-              alert(" Triangle doesn’t exist ");
-            } else if ((a === b) === c) {
-              alert(" Equilateral triangle ");
+              alert('Triangle doesn’t exist');
+            } else if (a === b === c) {
+              alert('Equilateral triangle');
             } else if (
-              (a === b && a !== c) ||
-              (a === c && a !== b) ||
-              (c === b && c !== a)
+              a === b && a !== c ||
+              a === c && a !== b ||
+              c === b && c !== a
             ) {
-              alert(" Isosceles triangle ");
+              alert('Isosceles triangle');
             } else {
-              alert(" Scalene triangle ");
+              alert('Scalene triangle');
             }
           }
         }
