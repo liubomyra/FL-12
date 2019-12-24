@@ -5,7 +5,7 @@ const inputA = prompt(
   'a'
 );
 
-// Validate 'a' input value
+
 if (inputA === '' || inputA === false || inputA === true || isNaN(inputA)) {
   alert('Invalid input data');
 } else {
@@ -14,14 +14,14 @@ if (inputA === '' || inputA === false || inputA === true || isNaN(inputA)) {
     alert('Invalid input data');
   } else {
     const inputB = prompt('Input value for b', 'b');
-    // Validate 'b' input value
+
     if (inputB === '' || inputB === false || inputB === true || isNaN(inputB)) {
       alert('Invalid input data');
     } else {
       const b = Number.parseFloat(inputB);
 
       const inputC = prompt('Input value for c', 'c');
-      // Validate 'c' input value
+
       if (
         inputC === '' ||
         inputC === false ||
@@ -32,15 +32,16 @@ if (inputA === '' || inputA === false || inputA === true || isNaN(inputA)) {
       } else {
         const c = Number.parseFloat(inputC);
 
-        // Do calculation
+ 
         const coefficientDiscriminat = 4;
+        const coefficienDenominator = 2;
         const discriminant = b * b - coefficientDiscriminat * a * c;
         const squareRoot = Math.sqrt(discriminant);
-        const denominator = 2 * a;
+        const denominator = coefficienDenominator * a;
         const root_1 = (-b + squareRoot) / denominator;
         const root_2 = (-b - squareRoot) / denominator;
 
-        // Show results
+
         if (discriminant === 0) {
           console.log('x = ' + Math.round(root_1));
         } else if (discriminant > 0) {
