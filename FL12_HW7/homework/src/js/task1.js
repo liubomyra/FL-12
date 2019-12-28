@@ -48,7 +48,9 @@ if (userInputEmail === '' || userInputEmail === null) {
           const newPasswordConfirm = prompt(
             'Please enter your new password again'
           );
-          if (newPassword === newPasswordConfirm) {
+          if (newPassword === '' || newPasswordConfirm === null) {
+            alert('Canceled');
+          } else if (newPassword === newPasswordConfirm) {
             alert('You have successfully changed your password.');
           } else {
             alert('You wrote the wrong password');
