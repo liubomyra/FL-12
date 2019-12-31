@@ -23,7 +23,7 @@ function countNumbers(inputString) {
 
   for (i = 0; i < orderedArray.length; i++) {
     propertyName = orderedArray[i];
-    if (countNumObject.hasOwnProperty(propertyName)) {
+    if (Object.prototype.hasOwnProperty.call(countNumObject, propertyName)) {
       countNum++;
     } else {
       countNum = 1;
