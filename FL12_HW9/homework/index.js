@@ -1,6 +1,8 @@
 // 1
+const CONST_TASK_1 = 2;
+
 function convert() {
-  let convertArrInput = [];
+  const convertArrInput = [];
   let i;
   let argument;
   for (i = 0; i < arguments.length; i++) {
@@ -16,13 +18,15 @@ function convert() {
   return convertArrInput;
 }
 
-convert('1', 2, 3, '4');
+convert('1', CONST_TASK_1, '4');
 
 // 2
-let arr2 = [1, 2, 3];
-let func2 = function(el) {
-  console.log(el * 2);
+const CONST_TASK_2 = 2;
+const arr2 = [CONST_TASK_2, CONST_TASK_2];
+let funcTask2 = function(el) {
+  console.log(el * CONST_TASK_2);
 };
+
 function executeforEach(arrInput, funcInput) {
   const newArr = [];
   for (let i = 0; i < arrInput.length; i++) {
@@ -31,12 +35,13 @@ function executeforEach(arrInput, funcInput) {
   return newArr;
 }
 
-executeforEach(arr2, func2);
+executeforEach(arr2, funcTask2);
 
 // 3
-let arr3 = [2, '5', 8];
-let func3 = function(el) {
-  return el + 3;
+const CONST_TASK_3 = 3;
+const arr3 = [CONST_TASK_3, '5'];
+let funcTask3 = function(el) {
+  return el + CONST_TASK_3;
 };
 
 function mapArray(arr, func) {
@@ -52,12 +57,14 @@ function mapArray(arr, func) {
   return executeforEach(transformArr, func);
 }
 
-mapArray(arr3, func3);
+mapArray(arr3, funcTask3);
 
 // 4
-let func4 = function(el) {
-  return el % 2 === 0;
+const CONST_TASK_4 = 2;
+let funcTask4 = function(el) {
+  return el % CONST_TASK_4 === 0;
 };
+
 function filterArray(arr, func) {
   const filterValues = executeforEach(arr, func);
   const result = [];
@@ -69,7 +76,7 @@ function filterArray(arr, func) {
   return result;
 }
 
-filterArray([2, 5, 8], func4);
+filterArray([CONST_TASK_4], funcTask4);
 
 // 5
 function flipOver(inputString) {
@@ -84,6 +91,9 @@ function flipOver(inputString) {
 flipOver('hey world');
 
 // 6
+const CONST_TASK_6_1 = 2;
+const CONST_TASK_6_2 = 7;
+
 function makeListFromRange([a, b]) {
   let newArrFromRange = [];
   for (let i = a; i <= b; i++) {
@@ -92,7 +102,7 @@ function makeListFromRange([a, b]) {
   return newArrFromRange;
 }
 
-makeListFromRange([2, 7]);
+makeListFromRange([CONST_TASK_6_1, CONST_TASK_6_2]);
 
 // 7
 const actors = [
@@ -110,31 +120,36 @@ function getArrayOfKeys(arr, propName) {
 getArrayOfKeys(actors, 'name');
 
 // 8
-let arr8 = [58, 14, 48, 2, 31, 29];
+const CONST_TASK_8_1 = 14;
+const CONST_TASK_8_2 = 30;
+const CONST_TASK_8_3 = 58;
+const arr8 = [CONST_TASK_8_1, CONST_TASK_8_3];
 
 function substitute(arr) {
   return mapArray(arr, function(el) {
-    return el < 30 ? '*' : el;
+    return el < CONST_TASK_8_2 ? '*' : el;
   });
 }
 
 substitute(arr8);
 
 // 9
-const date = new Date(2019, 0, 2);
+const CONST_TASK_9_1 = 2019;
+const CONST_TASK_9_2 = 2;
+const date = new Date(CONST_TASK_9_1, 0, CONST_TASK_9_2);
 const MILLISECONDS_IN_DAY = 86400000; // 24 * 60 * 60 * 1000
+
 function getPastDay(date, timeDiffDays) {
   const timeDiffMs = timeDiffDays * MILLISECONDS_IN_DAY;
   const prevDateMs = new Date(date.getTime() - timeDiffMs);
   return prevDateMs.getDate();
 }
 
-// function getPastDay(date, timeDiffDays) {
-//    const prevDate = date.setDate(date.getDate() + timeDiffDays);
-//     return prevDate.getDate();
-// }
+getPastDay(date, CONST_TASK_9_2);
 
 // 10
+const CONST_TASK_10 = 10;
+
 function formatDate(date) {
   const d = new Date(date);
   let month = '' + (d.getMonth() + 1);
@@ -143,12 +158,14 @@ function formatDate(date) {
   let hour = d.getHours();
   let minute = d.getMinutes();
 
-  // if (month.length < 2) {
-  //   month = '0' + month;
-  // }
-  // if (day.length < 2) {
-  //   day = '0' + day;
-  // }
+  if (hour < CONST_TASK_10) {
+    hour = '0' + hour.toString();
+  }
+  if (minute < CONST_TASK_10) {
+    minute = '0' + minute.toString();
+  }
 
   return [year, month, day].join('/') + ' ' + hour + ':' + minute;
 }
+
+formatDate(new Date());
