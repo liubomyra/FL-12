@@ -29,16 +29,15 @@ function Fighter({ name, damage, hp, strength, agility }) {
     },
     // Setter Methods
     setHealth(newHealth) {
-      _hp = Math.max(newHealth, 0);
+      _hp = Math.max(Math.min(newHealth, _maxHp), 0);
     },
 
     attack(enemy) {
-      const PROBAB = 100;
-      const successProbability =
-        PROBAB - (enemy.getStrength() + enemy.getAgility());
-      let randomSuccessful = Math.floor(Math.random() * (PROBAB + 1));
+      const PROBAB = 101;
+      const successProbability = enemy.getStrength() + enemy.getAgility();
+      let randomSuccessful = Math.floor(Math.random() * PROBAB);
 
-      if (successProbability > randomSuccessful) {
+      if (randomSuccessful > successProbability) {
         enemy.setHealth(enemy.getHealth() - _damage);
         console.log(
           _name + ' makes ' + _damage + ' damage to ' + enemy.getName()
@@ -67,6 +66,17 @@ function Fighter({ name, damage, hp, strength, agility }) {
   };
 }
 
+function tryToKill(atacker, defender) {
+  atacker.attack(defender);
+  if (defender.getHealth() <= 0) {
+    console.log(atacker.getName() + ' has won!');
+    defender.addLoss();
+    atacker.addWin();
+    return true;
+  }
+  return false;
+}
+
 function battle(fighter1, fighter2) {
   if (fighter1.getHealth() === 0) {
     console.log(fighter1.getName() + " is dead and can't fight.");
@@ -74,18 +84,8 @@ function battle(fighter1, fighter2) {
     console.log(fighter2.getName() + " is dead and can't fight.");
   } else {
     while (fighter1.getHealth() > 0 && fighter2.getHealth() > 0) {
-      fighter1.attack(fighter2);
-      if (fighter2.getHealth() <= 0) {
-        console.log(fighter1.getName() + ' has won!');
-        fighter2.addLoss();
-        fighter1.addWin();
-      } else {
-        fighter2.attack(fighter1);
-      }
-      if (fighter1.getHealth() <= 0) {
-        console.log(fighter2.getName() + ' has won!');
-        fighter1.addLoss();
-        fighter2.addWin();
+      if (!tryToKill(fighter1, fighter2)) {
+        tryToKill(fighter2, fighter1);
       }
     }
   }
