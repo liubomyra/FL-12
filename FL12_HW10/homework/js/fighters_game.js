@@ -29,19 +29,22 @@ function Fighter({ name, damage, hp, strength, agility }) {
     },
     // Setter Methods
     setHealth(newHealth) {
-      _hp = newHealth;
+      _hp = Math.max(newHealth, 0);
     },
-    attack(enemy) {
-      const successProbability =
-        100 - (enemy.getStrength() + enemy.getAgility());
 
-      if (successProbability > 50) {
+    attack(enemy) {
+      const PROBAB = 100;
+      const successProbability =
+        PROBAB - (enemy.getStrength() + enemy.getAgility());
+      let randomSuccessful = Math.floor(Math.random() * (PROBAB + 1));
+
+      if (successProbability > randomSuccessful) {
         enemy.setHealth(enemy.getHealth() - _damage);
         console.log(
           _name + ' makes ' + _damage + ' damage to ' + enemy.getName()
         );
       } else {
-        console.log(enemy.getName() + ' attack missed');
+        console.log(_name + ' attack missed');
       }
     },
     logCombatHistory() {
@@ -70,19 +73,21 @@ function battle(fighter1, fighter2) {
   } else if (fighter2.getHealth() === 0) {
     console.log(fighter2.getName() + " is dead and can't fight.");
   } else {
-    while (fighter1.getHealth() !== 0 && fighter2.getHealth() !== 0) {
+    while (fighter1.getHealth() > 0 && fighter2.getHealth() > 0) {
       fighter1.attack(fighter2);
-      if (fighter2.getHealth() !== 0) {
-        fighter2.attack(fighter1);
-      } else {
+      if (fighter2.getHealth() <= 0) {
         console.log(fighter1.getName() + ' has won!');
         fighter2.addLoss();
         fighter1.addWin();
+      } else {
+        fighter2.attack(fighter1);
+      }
+      if (fighter1.getHealth() <= 0) {
+        console.log(fighter2.getName() + ' has won!');
+        fighter1.addLoss();
+        fighter2.addWin();
       }
     }
-    console.log(fighter2.getName() + ' has won!');
-    fighter1.addLoss();
-    fighter2.addWin();
   }
 }
 
