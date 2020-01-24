@@ -1,0 +1,57 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+ul li {
+  cursor: pointer;
+  user-select: none;
+  margin-left: 5px;
+}
+
+ul li ul {
+  cursor: pointer;
+  user-select: none;
+  margin-left: 5px;
+}
+
+li a {
+  padding-left: 0;
+  text-decoration: none;
+  display: block;
+  color: black;
+}
+
+li a:hover {
+  background-color: #ccc;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.material-icons {
+  font-size: 20px;
+  margin-right: 6px;
+}
+
+.material-icons.folder:before {
+  content: 'folder';
+  color: burlywood;
+}
+
+li.open .material-icons.folder:before {
+  content: 'folder_open';
+  color: burlywood;
+}
+
+.material-icons.file:before {
+  content: 'insert_drive_file';
+  color: #ccc;
+}
