@@ -54,26 +54,21 @@ function generateItem(elem) {
   li.appendChild(a);
   a.prepend(i);
 
-  if (elem.folder && (elem.children === false || elem.children === null)) {
-    const em = document.createElement('em');
-    em.innerText = 'Folder is empty';
-    li.appendChild(em);
-  }
-
-  if (elem.children && elem.children.length) {
+  if (elem.folder) {
     let ul = document.createElement('ul');
-    ul.className = 'nested';
-    generateItemList(ul, elem.children);
+
+    if (elem.children && elem.children.length) {
+      generateItemList(ul, elem.children);
+    } else {
+      generateEmptyElement(ul);
+    }
     li.appendChild(ul);
   }
 
   return li;
 }
 
-//console.log(generateItem(structure[0]));
-
 let ul = document.createElement('ul');
-ul.className = 'listFolder';
 
 function generateItemList(ul, childrenList) {
   for (let index = 0; index < childrenList.length; index++) {
@@ -83,16 +78,25 @@ function generateItemList(ul, childrenList) {
   return ul;
 }
 
+function generateEmptyElement(ul) {
+  const li = document.createElement('li');
+  const em = document.createElement('em');
+  em.innerText = 'Folder is empty';
+  li.appendChild(em);
+  ul.appendChild(li);
+  return ul;
+}
+
 console.log(generateItemList(ul, structure));
 
 rootNode.appendChild(ul);
 
-// let toggler = document.getElementsByClassName('.material-icons.folder');
-// let i;
+let toggler = rootNode.getElementsByTagName('a');
 
-// for (i = 0; i < toggler.length; i++) {
-//   toggler[i].addEventListener('click', function() {
-//     this.parentElement.querySelector('.nested').classList.toggle('active');
-//     this.classList.toggle('li.open .material-icons.folder');
-//   });
-// }
+let i;
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener('click', function() {
+    this.parentNode.classList.toggle('open');
+    return false;
+  });
+}

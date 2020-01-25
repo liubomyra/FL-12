@@ -15,6 +15,7 @@ ul li ul {
   cursor: pointer;
   user-select: none;
   margin-left: 5px;
+  display: none;
 }
 
 li a {
@@ -28,14 +29,6 @@ li a:hover {
   background-color: #ccc;
 }
 
-.nested {
-  display: none;
-}
-
-.active {
-  display: block;
-}
-
 .material-icons {
   font-size: 20px;
   margin-right: 6px;
@@ -46,9 +39,13 @@ li a:hover {
   color: burlywood;
 }
 
-li.open .material-icons.folder:before {
+li.open > a .material-icons.folder:before {
   content: 'folder_open';
   color: burlywood;
+}
+
+li.open > ul {
+  display: block;
 }
 
 .material-icons.file:before {
