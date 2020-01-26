@@ -32,6 +32,8 @@ li a:hover {
 .material-icons {
   font-size: 20px;
   margin-right: 6px;
+  position: relative;
+  top: 4px;
 }
 
 .material-icons.folder:before {
@@ -51,4 +53,8 @@ li.open > ul {
 .material-icons.file:before {
   content: 'insert_drive_file';
   color: #ccc;
+}
+
+em {
+  margin-left: -5px;
 }
