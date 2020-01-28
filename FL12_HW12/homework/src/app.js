@@ -1,14 +1,6 @@
-const structureSet = {
-  name: 'Svitlana',
-  id: 1,
-  terms: [
-    { term: 'aaaa', definition: 'xxxx' },
-    { term: 'bbbb', definition: 'yyyyy' },
-    { term: 'cccc', definition: 'zzzz' }
-  ]
-};
-
 const rootNode = document.getElementById('root');
+const ZERO = 0;
+const MINUS_ONE = -1;
 
 function generateNameInput(setObj) {
   const fieldset = document.createElement('fieldset');
@@ -125,7 +117,7 @@ document.addEventListener(
     if (event.target.matches('.buttonAddNewTerm')) {
       const termsWrapper = event.target
         .closest('form')
-        .getElementsByClassName('termsWrapper')[0];
+        .getElementsByClassName('termsWrapper')[ZERO];
       const term = generateTermInput({ term: '', definition: '' });
       termsWrapper.appendChild(term);
     }
@@ -269,7 +261,7 @@ function navigate() {
   if (location.hash === '#/add') {
     addSetPage.classList.remove('hidden');
     renderAddPage();
-  } else if (location.hash.indexOf('/modify') > -1) {
+  } else if (location.hash.indexOf('/modify') > MINUS_ONE) {
     renderEditPage();
     editSetPage.classList.remove('hidden');
   } else {
@@ -295,7 +287,7 @@ function renderEditPage() {
   if (hashArr && hashArr.length > 1) {
     const id = hashArr[1];
     const retrievedSets = getSetsFromLocalStorage();
-    const curentSet = retrievedSets.filter(set => set.id === id)[0];
+    const curentSet = retrievedSets.filter(set => set.id === id)[ZERO];
     generateSet(curentSet, editSetPage);
   }
 }
