@@ -1,4 +1,11 @@
 /* Your styles go here */
+* {
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none !important;
+}
 .setDetailsForm {
   background: #e2e2e2;
   padding: 20px;
@@ -16,7 +23,8 @@
   margin: 0 5px;
 }
 
-.saveButton {
+.saveButton,
+.сancelButton {
   float: right;
   padding: 5px 10px;
 }
@@ -36,18 +44,26 @@
 }
 
 .mainPage {
-  border-top: #ccc solid 1px;
-  padding: 20px 10px;
+  padding: 40px 10px 20px;
   margin: 20px 0;
-  justify-content: space-between;
+  justify-content: flex-start;
   display: flex;
+  position: relative;
+  flex-wrap: wrap;
 }
 
+.addNewSet {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  padding: 5px 10px;
+}
 .setBlock {
   background: #e2e2e2;
   padding: 20px;
   margin: 10px;
-  flex: 1 1 50%;
+  width: calc(33% - 20px);
+  border-radius: 5px;
 }
 
 .setBlock h3 {

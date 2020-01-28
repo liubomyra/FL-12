@@ -25,15 +25,22 @@ function generateNameInput(setObj) {
 
   const saveButton = document.createElement('input');
   saveButton.type = 'submit';
-  saveButton.value = 'Save';
+  saveButton.value = 'Save changes';
   saveButton.name = setObj.name;
   saveButton.className = 'saveButton';
   fieldset.appendChild(saveButton);
 
+  const сancelButton = document.createElement('input');
+  сancelButton.type = 'submit';
+  сancelButton.value = 'Сancel';
+  сancelButton.name = setObj.name;
+  сancelButton.className = 'сancelButton';
+  fieldset.appendChild(сancelButton);
+
   return fieldset;
 }
 
-function generateSet(setObj) {
+function generateSet(setObj, container) {
   // create form
   const form = document.createElement('form');
   form.name = setObj.name;
@@ -41,7 +48,7 @@ function generateSet(setObj) {
   form.onsubmit = function() {
     return false;
   };
-  rootNode.appendChild(form);
+  container.appendChild(form);
 
   const idInput = document.createElement('input');
   idInput.type = 'hidden';
@@ -112,13 +119,13 @@ function generateTermInput(elem) {
   return fieldset;
 }
 
-generateSet({ id: 0 });
-
-const termsWrapper = rootNode.getElementsByClassName('termsWrapper')[0];
 document.addEventListener(
   'click',
   function(event) {
     if (event.target.matches('.buttonAddNewTerm')) {
+      const termsWrapper = event.target
+        .closest('form')
+        .getElementsByClassName('termsWrapper')[0];
       const term = generateTermInput({ term: '', definition: '' });
       termsWrapper.appendChild(term);
     }
@@ -129,25 +136,38 @@ document.addEventListener(
     }
 
     if (event.target.matches('.saveButton')) {
-      const newSetObject = getSetData();
-      saveSetToLocalStorage(newSetObject);
+      const container = event.target.closest('form');
+      const newSetObject = getSetData(container);
+      if (newSetObject && newSetObject.name && newSetObject.name.length) {
+        saveSetToLocalStorage(newSetObject);
+      }
+
+      window.location.hash = '';
+    }
+
+    if (event.target.matches('.сancelButton')) {
+      window.location.hash = '';
+    }
+
+    if (event.target.matches('.addNewSet')) {
+      window.location.hash = '/add';
     }
   },
   false
 );
 
-function getSetData() {
-  const nameInput = document.querySelectorAll('.setName')[0];
+function getSetData(container) {
+  const nameInput = container.querySelector('.setName');
   const name = nameInput ? nameInput.value : null;
   if (!name) {
     console.log('Name should not be empty');
     return false;
   }
 
-  const idInput = document.querySelector('.idInput');
+  const idInput = container.querySelector('.idInput');
   const id = idInput ? idInput.value : null;
 
-  const termsWrapper = document.querySelector('.termsWrapper');
+  const termsWrapper = container.querySelector('.termsWrapper');
   const terms = [];
 
   if (termsWrapper) {
@@ -176,6 +196,10 @@ function getSetData() {
 }
 
 function saveSetToLocalStorage(newSet) {
+  if (typeof newSet !== 'object' || newSet === null) {
+    return false;
+  }
+
   let retrievedSets = JSON.parse(localStorage.getItem('sets'));
   retrievedSets = retrievedSets || [];
   let filteredSets = retrievedSets.filter(function(set) {
@@ -185,6 +209,9 @@ function saveSetToLocalStorage(newSet) {
   localStorage.setItem('sets', JSON.stringify(filteredSets));
 }
 
+function getSetsFromLocalStorage() {
+  return JSON.parse(localStorage.getItem('sets')) || [];
+}
 /// Main page
 
 function renderSet(setObj) {
@@ -213,7 +240,7 @@ function renderSet(setObj) {
   button.className = 'editSet';
   button.innerHTML = 'edit';
   button.addEventListener('click', function() {
-    window.location.hash = '/modify/' + setObj.id;
+    window.location.hash = '/modify/:' + setObj.id;
   });
   wrap.appendChild(button);
 
@@ -224,9 +251,64 @@ const mainPage = document.createElement('div');
 mainPage.className = 'mainPage';
 rootNode.appendChild(mainPage);
 
-let retrievedSets = JSON.parse(localStorage.getItem('sets'));
-retrievedSets = retrievedSets || [];
-for (let i = 0; i < retrievedSets.length; i++) {
-  const set = retrievedSets[i];
-  mainPage.appendChild(renderSet(set));
+const addSetPage = document.createElement('div');
+addSetPage.className = 'addPage';
+rootNode.appendChild(addSetPage);
+
+const editSetPage = document.createElement('div');
+editSetPage.className = 'editPage';
+rootNode.appendChild(editSetPage);
+
+function navigate() {
+  mainPage.innerHTML = '';
+  mainPage.classList.add('hidden');
+  addSetPage.innerHTML = '';
+  addSetPage.classList.add('hidden');
+  editSetPage.innerHTML = '';
+  editSetPage.classList.add('hidden');
+  if (location.hash === '#/add') {
+    addSetPage.classList.remove('hidden');
+    renderAddPage();
+  } else if (location.hash.indexOf('/modify') > -1) {
+    renderEditPage();
+    editSetPage.classList.remove('hidden');
+  } else {
+    renderMainPage();
+    mainPage.classList.remove('hidden');
+  }
+}
+
+window.addEventListener('hashchange', navigate, false);
+navigate();
+
+function renderAddPage() {
+  const retrievedSets = getSetsFromLocalStorage();
+  const lastId = retrievedSets
+    .map(set => +set.id)
+    .sort((a, b) => a - b)
+    .pop();
+  generateSet({ id: lastId + 1 }, addSetPage);
+}
+function renderEditPage() {
+  const hashArr = window.location.hash.split(':');
+
+  if (hashArr && hashArr.length > 1) {
+    const id = hashArr[1];
+    const retrievedSets = getSetsFromLocalStorage();
+    const curentSet = retrievedSets.filter(set => set.id === id)[0];
+    generateSet(curentSet, editSetPage);
+  }
+}
+function renderMainPage() {
+  const addNewSet = document.createElement('button');
+  addNewSet.name = 'addNewSet';
+  addNewSet.className = 'addNewSet';
+  addNewSet.innerHTML = 'Add new';
+  mainPage.appendChild(addNewSet);
+
+  let retrievedSets = getSetsFromLocalStorage();
+  for (let i = 0; i < retrievedSets.length; i++) {
+    const set = retrievedSets[i];
+    mainPage.appendChild(renderSet(set));
+  }
 }
