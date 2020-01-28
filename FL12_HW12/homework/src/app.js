@@ -279,7 +279,7 @@ function renderAddPage() {
     .map(set => +set.id)
     .sort((a, b) => a - b)
     .pop();
-  generateSet({ id: lastId + 1 }, addSetPage);
+  generateSet({ id: lastId + 1 || 0 }, addSetPage);
 }
 function renderEditPage() {
   const hashArr = window.location.hash.split(':');
