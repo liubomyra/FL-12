@@ -47,12 +47,14 @@ class Card {
 
 class Deck {
   constructor() {
-    const cards = this.initCardsForDeck();
+    const cards = this.constructor.initCardsForDeck();
     this.cards = cards;
-    this.count = cards.length;
+  }
+  get count() {
+    return this.cards.length;
   }
 
-  initCardsForDeck() {
+  static initCardsForDeck() {
     const cards = [];
     const ranksKeys = Object.keys(ranks);
     for (let i = 0; i < suits.length; i++) {
@@ -77,7 +79,6 @@ class Deck {
   }
 
   draw(n = 1) {
-    this.count = this.count - n;
     return this.cards.pop();
   }
 }
@@ -101,7 +102,7 @@ class Player {
       const cardPlayerTwo = playerTwo.deck.draw();
       console.log(cardPlayerTwo.toString());
       let round = cardPlayerOne.compare(cardPlayerTwo);
-      console.log(round);
+
       if (round === 1) {
         this.wins++;
         console.log(`Player 1 is winner in this round!`);
