@@ -17,9 +17,18 @@ const ranks = {
 
 class Card {
   constructor(suit, rank) {
-    this.suit = suit;
-    this.rankValue = +rank;
-    this.rankLabel = ranks[rank];
+    this._suit = suit;
+    this._rankValue = +rank;
+    this._rankLabel = ranks[rank];
+  }
+  get suit() {
+    return this._suit;
+  }
+  get rankValue() {
+    return this._rankValue;
+  }
+  get rankLabel() {
+    return this._rankLabel;
   }
   isFaceCard() {
     return this.rankValue === 1 || this.rankValue > 10;
@@ -37,13 +46,6 @@ class Card {
     }
   }
 }
-
-// const cardOne = new Card('diamonds', 12);
-// const cardTwo = new Card('hearts', 3);
-// console.log(cardOne.toString()); // Jack of diamonds
-// console.log(cardOne.isFaceCard()); // a card is a face card
-// console.log(cardTwo.toString());
-// console.log(cardOne.compare(cardTwo)); // Player 1 is winner in this round!
 
 class Deck {
   constructor() {
@@ -75,16 +77,13 @@ class Deck {
       this.cards[i] = this.cards[randomCard];
       this.cards[randomCard] = replaceValue;
     }
-    console.log(`shuffle`);
   }
 
-  draw(n = 1) {
-    return this.cards.pop();
+  draw(n) {
+    const amount = n || 1;
+    return this.cards.splice(0, amount);
   }
 }
-
-const deckOne = new Deck();
-const deckTwo = new Deck();
 
 class Player {
   constructor(name, deck) {
@@ -93,14 +92,16 @@ class Player {
     this.wins = 0;
   }
   play(playerTwo) {
+    if (!(playerTwo instanceof Player)) {
+      console.log('You should play only with another Player');
+      return false;
+    }
     this.deck.shuffle();
     playerTwo.deck.shuffle();
-    //debugger;
     while (this.deck.count > 0 || playerTwo.deck.count > 0) {
-      const cardPlayerOne = this.deck.draw();
-      console.log(cardPlayerOne.toString());
-      const cardPlayerTwo = playerTwo.deck.draw();
-      console.log(cardPlayerTwo.toString());
+      const cardPlayerOne = this.deck.draw()[0];
+      const cardPlayerTwo = playerTwo.deck.draw()[0];
+      console.log(`${cardPlayerOne.toString()} vs ${cardPlayerTwo.toString()}`);
       let round = cardPlayerOne.compare(cardPlayerTwo);
 
       if (round === 1) {
@@ -123,7 +124,9 @@ class Player {
   }
 }
 
-// Play(playerOne, playerTwo);
+const deckOne = new Deck();
+const deckTwo = new Deck();
+
 const playerOne = new Player('Yuliia', deckOne);
 const playerTwo = new Player('Yura', deckTwo);
 
