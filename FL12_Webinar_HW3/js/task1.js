@@ -18,7 +18,7 @@ const ranks = {
 class Card {
   constructor(suit, rank) {
     this.suit = suit;
-    this.rankValue = rank;
+    this.rankValue = +rank;
     this.rankLabel = ranks[rank];
   }
   isFaceCard() {
@@ -97,8 +97,11 @@ class Player {
     //debugger;
     while (this.deck.count > 0 || playerTwo.deck.count > 0) {
       const cardPlayerOne = this.deck.draw();
+      console.log(cardPlayerOne.toString());
       const cardPlayerTwo = playerTwo.deck.draw();
+      console.log(cardPlayerTwo.toString());
       let round = cardPlayerOne.compare(cardPlayerTwo);
+      console.log(round);
       if (round === 1) {
         this.wins++;
         console.log(`Player 1 is winner in this round!`);
