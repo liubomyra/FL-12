@@ -1,3 +1,4 @@
+console.log('- TASK 1 -------------------------------------');
 const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
 const ranks = {
   1: 'Ace',
