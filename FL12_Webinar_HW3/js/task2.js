@@ -42,15 +42,15 @@ class Employee {
       return false;
     }
     Employee._EMPLOYEES.splice(thisIndex, 1);
-  } //- remove the employee from EMPLOYEES;
+  }
   retire() {
     this.quit();
     console.log('It was such a pleasure to work with you!');
-  } //- log a message and remove from EMPLOYEES;
+  }
   getFired() {
     this.quit();
     console.log('Not a big deal!');
-  } //- log a message and remove from EMPLOYEES;
+  }
   changeDepartment(newDepartment) {
     this.department = newDepartment;
   }
@@ -85,13 +85,12 @@ class Manager extends Employee {
   constructor({ id, firstName, lastName, birthday, salary, department }) {
     super({ id, firstName, lastName, birthday, salary, department });
     this.position = 'manager';
-    const managerOfEmployees = this.constructor.managedEmployees;
-    this.managerOfEmployees = managerOfEmployees;
   }
   get managedEmployees() {
-    debugger;
-    const managedEmployees1 = Employee._EMPLOYEES.filter(
-      e => !(e instanceof Manager) && e.department === this.department
+    return Employee._EMPLOYEES.filter(
+      function(e) {
+        return !(e instanceof Manager) && e.department === this.department;
+      }.bind(this)
     );
   }
 }
@@ -129,8 +128,7 @@ const salesManagerOne = new SalesManager({
   firstName: 'John',
   lastName: 'Doe',
   birthday: '10/04/1994',
-  salary: 5000,
-  department: 'sales'
+  salary: 5000
 });
 
 const salesManagerTwo = new SalesManager({
@@ -147,8 +145,7 @@ const hrManager = new HRManager({
   firstName: 'Bob',
   lastName: 'Doe',
   birthday: '10/04/1994',
-  salary: 5000,
-  department: 'sales'
+  salary: 5000
 });
 
 const blueCollarWorkerOne = new BlueCollarWorker({
@@ -171,42 +168,31 @@ const blueCollarWorkerTwo = new BlueCollarWorker({
   department: 'hr'
 });
 
-// console.log(blueCollarWorkerOne);
-// console.log(hrManager);
-
-const benefits1 = {
-  salary: 7000,
-  position: 'office manager'
-};
-
-console.log(salesManagerOne);
-console.log(salesManagerOne.getPromoted(benefits1));
-console.log(salesManagerOne);
-
+// TASK 3
 function ManagerPro(employee) {
   if (!(employee instanceof Manager)) {
+    console.log('ManagerPro could be called only for the manager');
     return false;
   }
-  // Object.assign(employee.prototype, {
-  //   promote(coworker, benefits) {
-  //     const isManagedEmployee = employee.managedEmployees.find(
-  // e => e.id === coworker.id
-  // );
-  // if (!isManagedEmployee) {
-  //   return false;
-  // }
-  // coworker.getPromoted(benefits);
-  //   }
-  // });
-  employee.constructor.prototype.promote = function(coworker, benefits) {
-    const isManagedEmployee =
-      employee.managedEmployees &&
-      employee.managedEmployees.find(e => e.id === coworker.id);
-    if (!isManagedEmployee) {
-      return false;
+  Object.assign(employee.constructor.prototype, {
+    promote(coworker, benefits) {
+      const isManagedEmployee = this.managedEmployees.find(
+        e => e.id === coworker.id
+      );
+      if (!isManagedEmployee) {
+        console.log(
+          `${coworker.firstName} ${coworker.lastName} can't be promoted by you. You can promote only employees from the '${this.department}' department`
+        );
+        return false;
+      }
+      coworker.getPromoted(benefits);
     }
-    coworker.getPromoted(benefits);
-  };
+  });
 }
 
-ManagerPro(hrManager);
+// salesManagerTwo: 'Johny Doe' manager from the 'sales' department
+// blueCollarWorkerOne: 'Mary Doe' worker from the 'sales' department
+ManagerPro(salesManagerTwo);
+salesManagerTwo.promote(blueCollarWorkerOne, { salary: 99999 });
+salesManagerTwo.promote(blueCollarWorkerOne, { department: 'hr' });
+salesManagerTwo.promote(blueCollarWorkerOne, { salary: 888 }); // not allowed
