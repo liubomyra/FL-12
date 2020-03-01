@@ -36,7 +36,7 @@ function deleteUser(userId) {
 
 const spinner = document.createElement('div');
 spinner.className = 'loader';
-rootNode.appendChild(spinner);
+document.body.appendChild(spinner);
 
 function showSpiner() {
   spinner.classList.add('show');

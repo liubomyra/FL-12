@@ -47,7 +47,6 @@ function generateUser(user) {
 
   for (let [key, value] of Object.entries(user)) {
     const myFieldset = generateUserField(key, value);
-    console.log(myFieldset);
     form.appendChild(myFieldset);
   }
   div.appendChild(form);
@@ -122,6 +121,7 @@ document.addEventListener(
     }
 
     if (event.target.matches('.saveButton')) {
+      showSpiner();
       const id = event.target.closest('.user').getAttribute('data-id');
       const key = event.target
         .closest('fieldset')
@@ -129,10 +129,19 @@ document.addEventListener(
       const value = event.target
         .closest('fieldset')
         .getElementsByTagName('input')[0].value;
-      let params = { key: value };
-      //if () {
-      updateUser(id, params);
-      //}
+      let params = {};
+      params[key] = value;
+      updateUser(id, params).then(() => {
+        hideSpiner();
+        let updateUserIndex = users.findIndex(user => +user.id === +id);
+        const updatedUser = { ...users[updateUserIndex], ...params };
+        users.splice(updateUserIndex, 1, updatedUser);
+        rootNode.remove();
+        rootNode = document.createElement('div');
+        rootNode.id = 'root';
+        document.body.appendChild(rootNode);
+        renderUsers();
+      });
     }
 
     if (event.target.matches('.сancelButton')) {
