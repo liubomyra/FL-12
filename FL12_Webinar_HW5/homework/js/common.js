@@ -28,8 +28,8 @@ function updateUser(id, params) {
   }).then(response => response.json());
 }
 
-function deleteUser(id) {
-  return fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+function deleteUser(userId) {
+  return fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, {
     method: 'DELETE'
   }).then(response => response.json());
 }

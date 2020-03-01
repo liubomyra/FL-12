@@ -105,8 +105,16 @@ document.addEventListener(
   'click',
   function(event) {
     if (event.target.matches('.buttonDeleteUser')) {
-      //debugger;
-      deleteUser(user.id);
+      showSpiner();
+      const id = event.target.closest('.user').getAttribute('data-id');
+      debugger;
+      deleteUser(id).then(() => {
+        let removeUser = users.find(user => user.id === +id);
+        let indexRemoveUser = users.findIndex(removeUser);
+
+        debugger;
+        hideSpiner();
+      });
       return false;
     }
 
