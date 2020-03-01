@@ -109,10 +109,14 @@ document.addEventListener(
       const id = event.target.closest('.user').getAttribute('data-id');
 
       deleteUser(id).then(() => {
-        debugger;
         hideSpiner();
         let indexRemoveUser = users.findIndex(user => +user.id === +id);
         users.splice(indexRemoveUser, 1);
+        rootNode.remove();
+        rootNode = document.createElement('div');
+        rootNode.id = 'root';
+        document.body.appendChild(rootNode);
+        renderUsers();
       });
       return false;
     }

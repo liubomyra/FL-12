@@ -1,4 +1,4 @@
-const rootNode = document.getElementById('root');
+let rootNode = document.getElementById('root');
 
 const fetchUsers = function() {
   return fetch(`https://jsonplaceholder.typicode.com/users`).then(response =>
