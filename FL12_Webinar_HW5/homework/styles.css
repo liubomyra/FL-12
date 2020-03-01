@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+}
+
+.loader {
+  display: none;
+}
+.loader::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #666; /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+  z-index: 5;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.loader::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 4;
+}
+.show {
+  display: block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.allUsers {
+  padding: 40px 10px 20px;
+}
+
+.allUsers > ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.allUsers > ul li {
+  cursor: pointer;
+  user-select: none;
+  margin-left: 5px;
+}
+
+.user {
+  border: 1px solid lightgray;
+  position: relative;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+a.userName {
+  padding-left: 0;
+  text-decoration: none;
+  color: black;
+}
+
+.UserForm fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 5px;
+  white-space: nowrap;
+}
+
+.UserForm label {
+  color: #666;
+  width: 120px;
+  display: inline-block;
+}
+
+.UserForm input[type='text'] {
+  width: 300px;
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+.saveButton,
+.сancelButton {
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+.buttonDeleteUser {
+  padding: 5px 10px;
+  background-color: lightslategray;
+  color: #fff;
+}
+
+.UserForm fieldset div {
+  margin: 10px 0 10px 20px;
+}
+.UserForm fieldset div label {
+  width: 100px;
+}
+
+.UserForm fieldset div div label {
+  width: 80px;
+}
+
+p.emailComment {
+  font-style: italic;
+}
