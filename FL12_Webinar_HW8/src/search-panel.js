@@ -20,7 +20,7 @@ export default class SearchPanel extends Component {
     return (
       <input
         type='text'
-        className=''
+        className='search'
         placeholder='Search'
         value={this.state.term}
         onChange={this.onTermChange}
