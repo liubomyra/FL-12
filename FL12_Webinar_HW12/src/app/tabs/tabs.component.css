@@ -1,0 +1,23 @@
+.tabs {
+  border-bottom: #999 solid 1px;
+  margin: 0 0 20px;
+  padding: 0;
+  background: #f4f4f4;
+  list-style: none;
+}
+
+.tabs .tab {
+  display: inline-block;
+  padding: 1rem;
+  margin: 0 1rem 0 0;
+}
+
+.tabs .tab a {
+  text-decoration: underline;
+  color: #666;
+}
+
+.tabs .tab.active a {
+  color: #000;
+  text-decoration: none;
+}

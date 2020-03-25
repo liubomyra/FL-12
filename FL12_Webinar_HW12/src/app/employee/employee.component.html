@@ -1,0 +1,9 @@
+<div *ngIf="employee.employees.length; then RM_Block else regular_Block"></div>
+<ng-template #RM_Block><b>{{ employee.name }}</b> (RM)</ng-template>
+<ng-template #regular_Block>{{ employee.name }}</ng-template>
+
+<ul>
+  <li *ngFor="let subordiate of employee.employees">
+    <app-employee [employee]="subordiate"></app-employee>
+  </li>
+</ul>
