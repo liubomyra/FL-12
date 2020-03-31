@@ -94,10 +94,9 @@ function set() {
     } else {
       winsO++;
     }
-    document.getElementById('X').textContent = `Player X scores =   ${winsX}`;
-    document.getElementById('O').textContent = `Player O scores =   ${winsO}`;
-    console.log('winsX= ' + winsX);
-    console.log('winsO= ' + winsO);
+    document.getElementById('X').textContent = `Player X's scores =   ${winsX}`;
+    document.getElementById('O').textContent = `Player O's scores =   ${winsO}`;
+
     return;
   } else if (moves === N_SIZE * N_SIZE) {
     document.getElementById('winner').textContent = 'Draw!';
