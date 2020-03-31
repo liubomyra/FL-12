@@ -7,6 +7,9 @@ const boxes = [];
 let turn = X;
 let score;
 let moves;
+let round = 1;
+let winsX = 0;
+let winsO = 0;
 
 const init = () => {
   var board = document.createElement('table');
@@ -49,13 +52,32 @@ const startNewGame = () => {
   };
   moves = 0;
   turn = X;
+  round = 1;
+  winsX = 0;
+  winsO = 0;
   document.getElementById('winner').textContent = '';
+  document.getElementById('round').textContent = '';
+  document.getElementById('X').textContent = '';
+  document.getElementById('O').textContent = '';
   boxes.forEach(function(square) {
     square.innerHTML = EMPTY;
   });
 };
 
-// contains(selector, text);
+const continueGame = () => {
+  score = {
+    X: 0,
+    O: 0
+  };
+  moves = 0;
+  turn = X;
+  round++;
+
+  document.getElementById('winner').textContent = '';
+  boxes.forEach(function(square) {
+    square.innerHTML = EMPTY;
+  });
+};
 
 function set() {
   if (this.innerHTML !== EMPTY) {
@@ -64,11 +86,25 @@ function set() {
   this.innerHTML = turn;
   moves += 1;
   score[turn] += this.identifier;
+  document.getElementById('round').textContent = `Round: ${round}.`;
   if (win(this, turn)) {
     document.getElementById('winner').textContent = `Player ${turn} won!`;
+    if (turn === 'X') {
+      winsX++;
+    } else {
+      winsO++;
+    }
+    document.getElementById('X').textContent = `Player X scores =   ${winsX}`;
+    document.getElementById('O').textContent = `Player O scores =   ${winsO}`;
+    console.log('winsX= ' + winsX);
+    console.log('winsO= ' + winsO);
     return;
   } else if (moves === N_SIZE * N_SIZE) {
     document.getElementById('winner').textContent = 'Draw!';
+    winsX++;
+    winsO++;
+    document.getElementById('X').textContent = `Player X scores =   ${winsX}`;
+    document.getElementById('O').textContent = `Player O scores =   ${winsO}`;
     return;
   } else {
     turn = turn === X ? O : X;
@@ -76,6 +112,7 @@ function set() {
   }
 }
 
+document.getElementById('continue').addEventListener('click', continueGame);
 document.getElementById('restart').addEventListener('click', startNewGame);
 
 init();

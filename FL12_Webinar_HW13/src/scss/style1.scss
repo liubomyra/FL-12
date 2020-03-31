@@ -35,7 +35,9 @@ td {
 .button-wrap {
   margin: 20px 0;
   text-align: center;
-  #restart {
+  font-size: 18px;
+  #restart,
+  #continue {
     display: inline-block;
     padding: 1rem 3rem;
   }
